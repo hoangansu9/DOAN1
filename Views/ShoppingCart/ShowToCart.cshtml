@@ -1,0 +1,109 @@
+﻿@model doan_1.Models.Cart
+@{
+    ViewBag.Title = "ShowToCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Sum
+                </th>
+                <th>
+                    Remove
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                double total = Convert.ToDouble(item._shopping_product.BookPrice * item._shopping_quantity);
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item._shopping_product.BookName)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item._shopping_product.Image)" style="width:40px; height:40px;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item._shopping_product.BookPrice)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Update_Quantity_Cart", "ShoppingCart"))
+                        {
+                            <input type="hidden" value="@item._shopping_product.BookID" name="ID_Product" />
+                            <input type="number" value="@item._shopping_quantity" name="Quantity" />
+                            <button type="submit" value="Update Quantity">Update</button>
+                        }
+
+                    </td>
+                    <td>
+                        Total: @total
+                    </td>
+                    <td>
+                        <a href="/ShoppingCart/RemoveCart/@item._shopping_product.BookID">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan=" 4" style="text-align:center">
+                    @using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                    {
+                        <table style="border-collapse:separate; border-spacing:5px">
+                            <tr>
+                                <td>Code Customer:</td>
+                                <td>
+                                    <input type="number" name="CodeCustomer" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Address Delivery:
+                                </td>
+                                <td>
+                                    <input type="text" name="Address_Delivery" required />
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("Create","Customers")" class="btn btn-success">Register</a>
+                                </td>
+                                <td>
+                                    <input type="submit" value="CheckOut" class="btn btn-success" />
+
+                                </td>
+
+                                <td></td>
+                            </tr>
+                        </table>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    Sum Total: @Model.Total_Money()
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <a href="/">Back to Home</a>
+}

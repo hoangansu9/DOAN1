@@ -1,0 +1,110 @@
+﻿@model IEnumerable<doan_1.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.IsInRole("Admin") == true)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Author.AuthorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CateName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Provider.ProviderName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Publisher.PublisherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublisherDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.AuthorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CateName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Provider.ProviderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publisher.PublisherName)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookPrice)
+                </td>
+                <td style="overflow:hidden">
+                    @Html.DisplayFor(modelItem => item.BookDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublisherDate)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.Image)" style="height:200px ;width:200px;" />
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookID })
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div >
+        <div class="container view_book_wrapper">
+      
+            
+            <div class="row">
+                @foreach (var item in Model)
+                 {  
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="card item_book">
+                                <a href="@Url.Action("Details", "Book", new { id = item.BookID })">
+                                    <img class="img_book" src="@Url.Content(item.Image)"  />
+                                </a>
+
+                                <div class="name_book">@Html.DisplayFor(modelItem => item.BookName)</div>
+                                <div class="price_book" >
+                                <a href="/ShoppingCart/AddToCart/@item.BookID" class="glyphicon glyphicon-shopping-cart"></a>@Html.DisplayFor(modelItem => item.BookPrice)&dstrok;</div>
+                            </div>
+                         </div>
+                 }
+            </div>           
+        </div>
+    </div>
+}

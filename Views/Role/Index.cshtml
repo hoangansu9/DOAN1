@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNet.Identity.EntityFramework;
+@model IEnumerable<IdentityRole>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        <h2>@ViewBag.Title</h2>
+        @ViewBag.ListRoles
+        <hr />
+        @Html.ActionLink("Create Role", "Create", null, new { @class = "btn btn-primary" })
+        <hr />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Tên quyền</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>
+                            @if (item.Name != "Admin")
+                            {
+                                @Html.ActionLink("Delete Roles", "Delete", new { id = item.Id })
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

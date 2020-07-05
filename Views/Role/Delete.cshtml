@@ -1,0 +1,26 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+@{
+
+    ViewBag.Title = "Delete role";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+        <div class="text-center">
+            <h5>Are you sure you want to delete role: @Model.Name ? </h5>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <button type="submit" class="btn btn-primary">Accept</button>
+                <a href="@Url.Action("Index")" class="btn btn-default">Cancel</a>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;   
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.partial_login_wrapper {
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+}
+.view_book_wrapper {
+    display: block;
+
+    .item_book {
+        box-shadow: 0 0.0625rem 0.125rem 0 rgba(0,0,0,.1);
+        text-align: center;
+        border-radius: .125rem;
+
+        .name_book {
+        }
+
+        .price_book {
+            font-weight: bold;
+        }
+
+        .img_book{
+            width:100%
+        }
+    }
+}
