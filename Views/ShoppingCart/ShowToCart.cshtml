@@ -53,7 +53,7 @@
 
                     </td>
                     <td>
-                        Total: @total
+                        Total: @total.ToString("N0")
                     </td>
                     <td>
                         <a href="/ShoppingCart/RemoveCart/@item._shopping_product.BookID">Remove</a>
@@ -68,31 +68,14 @@
                     @using (Html.BeginForm("CheckOut", "ShoppingCart"))
                     {
                         <table style="border-collapse:separate; border-spacing:5px">
-                            <tr>
-                                <td>Code Customer:</td>
-                                <td>
-                                    <input type="number" name="CodeCustomer" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Address Delivery:
-                                </td>
-                                <td>
-                                    <input type="text" name="Address_Delivery" required />
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="@Url.Action("Create","Customers")" class="btn btn-success">Register</a>
-                                </td>
+                            
+                               <tr> 
                                 <td>
                                     <input type="submit" value="CheckOut" class="btn btn-success" />
 
                                 </td>
 
-                                <td></td>
+                                
                             </tr>
                         </table>
                     }
@@ -100,7 +83,7 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    Sum Total: @Model.Total_Money()
+                    Sum Total: @Model.Total_Money().ToString("N0")
                 </td>
             </tr>
         </tfoot>

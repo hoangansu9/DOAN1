@@ -36,23 +36,23 @@ namespace doan_1.Models
         //foreignKey
         [ForeignKey("Author")]
         public int AuthorID { get; set; }
-        public Author Author { get; set; }
+        public virtual Author Author { get; set; }
 
         [Display(Name = "Nhà xuất bản")]
 
         [ForeignKey("Publisher")]
         public int PublisherID { get; set; }
-        public Publisher Publisher { get; set; }
+        public virtual Publisher Publisher { get; set; }
 
         [Display(Name = "Nhà cung cấp")]
 
         [ForeignKey("Provider")]
         public int ProviderID { get; set; }
-        public Provider Provider { get; set; }
+        public virtual Provider Provider { get; set; }
 
         [Display(Name = "Loại")]
         [ForeignKey("Category")]
         public int CateID { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

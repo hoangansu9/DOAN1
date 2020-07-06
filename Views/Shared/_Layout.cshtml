@@ -9,7 +9,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top header_top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,29 +17,68 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <div   class="logo_wrapper ">
+                    <a href="@Url.Action("Index", "Book")">
+                        <h1 class="logo_top">AC</h1>
+                    </a>
+                </div>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-               <div >
-                   <a class="glyphicon glyphicon-shopping-cart" href="/ShoppingCart/ShowToCart"></a>
-                   @Html.Action("BagCart","ShoppingCart")
-               </div>
-                @Html.Partial("_LoginPartial")
-            </div>
+                    <li>
+                        <form class="search_bar ">
+                            <input type="text" placeholder="Tìm kiếm sách..." name="search">
+                            <button type="submit">Tìm</button>
+                        </form>
+                    </li>                   
+                    <li class="bag_cart ">                     
+                        <div class="dropdown">
+                            <a class="glyphicon glyphicon-shopping-cart dropBtn" href="/ShoppingCart/ShowToCart">
+                                @Html.Action("BagCart", "ShoppingCart")
+                            </a>
+                            <div class="dropdown-content">
+                                <div>
+                                    @Html.Action("BagCartItem", "ShoppingCart")
+                                </div>                               
+                            </div>
+                        </div>
+                    </li>
+                    <li>@Html.Partial("_LoginPartial")</li>
+
+                </ul>                                                  
+           </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+       
     </div>
+    <footer class="footer-distributed footer_wrapper ">
+        <div class="footer-left">
+            <h3>Hoàng Ân<span> - Nhóm AC</span></h3>
+            <p class="footer-links">
+                <a href="#">Home</a>
+                ·
+                <a href="#">Sản phẩm</a>
+                ·
+                <a href="#">Giỏ Hàng</a>
+                ·
+                <a href="#">About</a>
+                ·
+                <a href="#">Contact</a>
+            </p>
+            <p class="footer-company-name">© Copyright Sử Hoàng Ân 2020</p>
+        </div>
+        <div class="footer-right">
+            <p>Contact Us</p>
+            <form action="#" method="post">
+                <input type="text" name="email" placeholder="Email">
+                <textarea name="message" placeholder="Message"></textarea>
+                <button>Send</button>
+            </form>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

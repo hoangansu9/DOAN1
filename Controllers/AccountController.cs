@@ -152,6 +152,7 @@ namespace doan_1.Controllers
         {
             if (ModelState.IsValid)
             {
+              
                 if (model.ImageUpLoad != null)
                 {
                     string fileNameImg = Path.GetFileNameWithoutExtension(model.ImageUpLoad.FileName);
@@ -159,6 +160,7 @@ namespace doan_1.Controllers
                     fileNameImg = fileNameImg + extension;
                     model.Image = "~/Content/Images/" + fileNameImg;
                     model.ImageUpLoad.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/"), fileNameImg));
+                    
                 }
               
                 var user = new ApplicationUser

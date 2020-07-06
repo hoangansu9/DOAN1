@@ -9,16 +9,15 @@
     <ul class="nav navbar-nav navbar-right">
         <li class="partial_login_wrapper">
             <div class="dropdown">
-                <img class="dropBtn" src="~/Content/Images/thumbnail.png" style="height:30px ;width:30px;" />
+                <img class="dropBtn" src="~/Content/Images/thumbnail.png"/>
                 <div class="dropdown-content">
                     <div>
                       @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                     </div>                  
                     <div>
-                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off &nbsp;<span class="glyphicon glyphicon-log-out"></span></a>
                     </div>                   
-                </div>
-               
+                </div>              
             </div>
 
         </li>               

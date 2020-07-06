@@ -24,6 +24,8 @@ namespace doan_1.Models
         public Book Book { get; set; }
 
         [Display(Name = "Số lượng")]
-        public int Qantity { get; set; }
+        public int Quantity { get; set; }
+        [Display(Name = "Đơn giá")]
+        public float UnitPriceSale { get; set; }
     }
 }

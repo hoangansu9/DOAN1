@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title> Thông tin đơn hàng mới từ khách hàng: {{CustomerName}}</title>
+    <meta charset="utf-8" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+    Thông tin đơn hàng mới từ khách hàng: {{CustomerName}}
+    Điện thoại: {{Phone}} <br />
+    Email: {{Email}}<br />
+    Địa chỉ: {{Address}}<br />
+    Ngày đặt hàng: {{OrderDate}}
+    <table>
+        <tr>
+            <td>
+                Tên
+            </td>
+            <td>
+                Đơn giá
+            </td>
+            <td>
+                Số lượng
+            </td>
+        </tr>
+        <tr>
+      
+            <td>
+                {{ProductName}}
+            </td>
+            <td>
+                {{Quantity}}
+            </td>
+            <td>
+                {{UnitPrice}}
+            </td>
+        </tr>
+
+    </table>
+    Tổng giá trị đơn hàng: {{Total}}<br />
+
+ <!--<script>
+                                    
+     for (i = 1; i <=  ; i++) {
+            x = x + "<h" + i + ">Heading " + i + "</h" + i + ">";
+     }
+        document.getElementById("demo").innerHTML = x;
+</script>-->
+</body>
+
+</html>
