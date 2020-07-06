@@ -105,7 +105,7 @@ namespace doan_1.Controllers
                 content = content.Replace("{{Email}}", currentUser.Email);
                 content = content.Replace("{{Address}}", currentUser.Address);
 
-                List<string> contentsName = new List<string>();
+              
                 //
                 foreach (var item in cart.Items)
                 {
@@ -116,7 +116,7 @@ namespace doan_1.Controllers
                     orderDetail.Quantity = item._shopping_quantity;
                     total += item._shopping_quantity * item._shopping_product.BookPrice;
                     _db.OrderDetail.Add(orderDetail);
-                    contentsName.Add(orderDetail.Book.BookName);
+                   
                 }
              
                 content = content.Replace("{{Total}}", total.ToString("N0"));
