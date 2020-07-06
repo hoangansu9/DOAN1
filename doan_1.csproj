@@ -221,6 +221,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\add.png" />
+    <Content Include="Content\Images\book_banner1.jpg" />
+    <Content Include="Content\Images\book_banner2.jpg" />
+    <Content Include="Content\Images\book_banner3.jpg" />
+    <Content Include="Content\Images\free_book.jpg" />
     <Content Include="Content\Images\thumbnail.png" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
@@ -236,9 +240,9 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <None Include="Content\Site.scss" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\Site.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ChangeImg.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
