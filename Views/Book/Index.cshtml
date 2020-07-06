@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
+
 
 @if (User.IsInRole("Admin") == true)
 {
@@ -124,8 +126,8 @@ else
                             <div class="name_book">@Html.DisplayFor(modelItem => item.BookName)</div>
                             <div class="price_book">
                                 <a href="/ShoppingCart/AddToCart/@item.BookID" class="glyphicon glyphicon-shopping-cart">
-                                    </a>
-                                @Html.DisplayFor(modelItem => item.BookPrice)&dstrok;
+                                </a>
+                                @Html.DisplayFor(modelItem => item.BookPrice, ".ToString(N0)")&dstrok;
                             </div>
                         </div>
                     </div>

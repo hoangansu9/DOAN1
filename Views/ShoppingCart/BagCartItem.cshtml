@@ -3,16 +3,17 @@
 {
     <table class="table">
         <tbody>
+            <tr>
+
+                <td>Hình</td>
+                <td>Đơn giá</td>
+                <td>Số lượng</td>
+                <td>Tổng</td>
+            </tr>
             @foreach (var item in Model.Items)
             {
                 double total = Convert.ToDouble(item._shopping_product.BookPrice * item._shopping_quantity);
-                <tr>
 
-                    <td>Hình</td>
-                    <td>Đơn giá</td>
-                    <td>Số lượng</td>
-                    <td>Tổng</td>
-                </tr>
                 <tr>
 
                     <td>
@@ -23,26 +24,27 @@
                     </td>
                     <td>
                         @using (Html.BeginForm("Update_Quantity_Cart", "ShoppingCart"))
-                         {
+                        {
                             <input type="hidden" value="@item._shopping_product.BookID" name="ID_Product" />
                             <input type="text" disabled value="@item._shopping_quantity" name="Quantity" />
 
-                         }
+                        }
 
                     </td>
                     <td>
-                        @total
+                        @total.ToString("N0")
                     </td>
                     <td>
                         <a class="glyphicon glyphicon-remove-sign" href="/ShoppingCart/RemoveCart/@item._shopping_product.BookID"></a>
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="5">
-                        Sum Total: @Model.Total_Money()
-                    </td>
-                </tr>
+
             }
+            <tr>
+                <td colspan="5">
+                    Sum Total: @Model.Total_Money().ToString("N0")
+                </td>
+            </tr>
         </tbody>
     </table>
     

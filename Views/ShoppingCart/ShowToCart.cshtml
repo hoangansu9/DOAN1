@@ -53,7 +53,7 @@
 
                     </td>
                     <td>
-                        Total: @total
+                        Total: @total.ToString("N0")
                     </td>
                     <td>
                         <a href="/ShoppingCart/RemoveCart/@item._shopping_product.BookID">Remove</a>
@@ -83,7 +83,7 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    Sum Total: @Model.Total_Money()
+                    Sum Total: @Model.Total_Money().ToString("N0")
                 </td>
             </tr>
         </tfoot>

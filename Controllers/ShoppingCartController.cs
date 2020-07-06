@@ -1,7 +1,9 @@
-﻿using doan_1.Models;
+﻿using Common;
+using doan_1.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -36,7 +38,9 @@ namespace doan_1.Controllers
         {
             if (Session["Cart"] == null)
             {
-                return Content("Giỏ hàng trống!");
+               
+                return  JavaScript("<script language='javascript' type='text/javascript'>alert('Giỏ hàng trống...!');</script>");
+
             }
             Cart cart = Session["Cart"] as Cart;
             return View(cart);
@@ -81,7 +85,7 @@ namespace doan_1.Controllers
             return View();
         }
 
-        public ActionResult CheckOut(FormCollection form)
+        public  ActionResult CheckOut(FormCollection form)
         {
             try
             {
@@ -89,9 +93,20 @@ namespace doan_1.Controllers
                 Cart cart = Session["Cart"] as Cart;
                 Order _order = new Order();
                 _order.OrderDate = DateTime.Now;
-                _order.UserId = User.Identity.GetUserId();      
-                
-                
+                _order.UserId = User.Identity.GetUserId();
+                //
+                string currentUserId = User.Identity.GetUserId();
+                ApplicationUser currentUser = _db.Users.FirstOrDefault(x => x.Id == currentUserId);
+
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/SendMailOrder.html"));
+                content = content.Replace("{{OrderDate}}", _order.OrderDate.ToString());
+                content = content.Replace("{{CustomerName}}", currentUser.UserName);
+                content = content.Replace("{{Phone}}", currentUser.PhoneNumber);
+                content = content.Replace("{{Email}}", currentUser.Email);
+                content = content.Replace("{{Address}}", currentUser.Address);
+
+                List<string> contentsName = new List<string>();
+                //
                 foreach (var item in cart.Items)
                 {
                     OrderDetail orderDetail = new OrderDetail();
@@ -101,11 +116,21 @@ namespace doan_1.Controllers
                     orderDetail.Quantity = item._shopping_quantity;
                     total += item._shopping_quantity * item._shopping_product.BookPrice;
                     _db.OrderDetail.Add(orderDetail);
+                    contentsName.Add(orderDetail.Book.BookName);
                 }
+             
+                content = content.Replace("{{Total}}", total.ToString("N0"));
+                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+
+                new MailHelper().SendMail(currentUser.Email, "Đơn hàng mới từ Shop AC", content);
+                new MailHelper().SendMail(toEmail, "Đơn hàng mới từ Shop AC", content);
+              
                 _order.SubTotal = total;
                 _db.Order.Add(_order);
                 _db.SaveChanges();
                 cart.ClearCart();
+
+
                 return RedirectToAction("Shopping_Success", "ShoppingCart");
             }
             catch
