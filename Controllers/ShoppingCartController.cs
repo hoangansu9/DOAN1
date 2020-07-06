@@ -1,4 +1,5 @@
 ﻿using doan_1.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,13 +29,14 @@ namespace doan_1.Controllers
             {
                 GetCart().Add(pro);
             }
-            return RedirectToAction("ShowToCart", "ShoppingCart");
+            return Redirect(Request.UrlReferrer.ToString());
+
         }
         public ActionResult ShowToCart()
         {
             if (Session["Cart"] == null)
             {
-                return RedirectToAction("ShowToCart", "ShoppingCart");
+                return Content("Giỏ hàng trống!");
             }
             Cart cart = Session["Cart"] as Cart;
             return View(cart);
@@ -51,7 +53,7 @@ namespace doan_1.Controllers
         {
             Cart cart = Session["Cart"] as Cart;
             cart.Remove_Cart_Item(id);
-            return RedirectToAction("ShowToCart", "ShoppingCart");
+            return Redirect(Request.UrlReferrer.ToString());
         }
         public PartialViewResult BagCart()
         {
@@ -64,38 +66,52 @@ namespace doan_1.Controllers
             return PartialView("BagCart");
 
         }
+        public PartialViewResult BagCartItem()
+        {
+            if (Session["Cart"] == null)
+            {
+                return null;
+            }
+            Cart cart = Session["Cart"] as Cart;
+            return PartialView(cart);
+
+        }
         public ActionResult Shopping_Success()
         {
             return View();
         }
 
-        //public ActionResult CheckOut(FormCollection form)
-        //{
-        //    try
-        //    {
-        //        Cart cart = Session["Cart"] as Cart;
-        //        Order _order = new Order();
-        //        _order.OrderDate = DateTime.Now;
-        //        _order.CodeCus = int.Parse(form["CodeCustomer"]);
-        //        _order.Descriptions = form["Address_Delivery"];
-        //        _db.Orders.Add(_order);
-        //        foreach (var item in cart.Items)
-        //        {
-        //            OrderDetail orderDetail = new OrderDetail();
-        //            orderDetail.IDOrder = _order.IDOrder;
-        //            orderDetail.IDProduct = item._shopping_product.IDProduct;
-        //            orderDetail.UnitPriceSale = item._shopping_product.UnitPrice;
-        //            orderDetail.QuantitySale = item._shopping_quantity;
-        //            _db.OrderDetails.Add(orderDetail);
-        //        }
-        //        _db.SaveChanges();
-        //        cart.ClearCart();
-        //        return RedirectToAction("Shopping_Success", "ShoppingCart");
-        //    }
-        //    catch
-        //    {
-        //        return Content("Error CHeckout. Please information of Customer....");
-        //    }
-        //}
+        public ActionResult CheckOut(FormCollection form)
+        {
+            try
+            {
+                float total = 0;
+                Cart cart = Session["Cart"] as Cart;
+                Order _order = new Order();
+                _order.OrderDate = DateTime.Now;
+                _order.UserId = User.Identity.GetUserId();      
+                
+                
+                foreach (var item in cart.Items)
+                {
+                    OrderDetail orderDetail = new OrderDetail();
+                    orderDetail.OrderID = _order.OrderID;
+                    orderDetail.BookID = item._shopping_product.BookID;
+                    orderDetail.UnitPriceSale = item._shopping_product.BookPrice;
+                    orderDetail.Quantity = item._shopping_quantity;
+                    total += item._shopping_quantity * item._shopping_product.BookPrice;
+                    _db.OrderDetail.Add(orderDetail);
+                }
+                _order.SubTotal = total;
+                _db.Order.Add(_order);
+                _db.SaveChanges();
+                cart.ClearCart();
+                return RedirectToAction("Shopping_Success", "ShoppingCart");
+            }
+            catch
+            {
+                return Content("Error CHeckout. Please information of Customer....");
+            }
+        }
     }
 }

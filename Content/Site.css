@@ -245,11 +245,30 @@ form.search_bar::after {
 /*#region bagcart*/
 .bag_cart {
   margin: 0 30px; }
+  .bag_cart > a {
+    font-size: 20px; }
   .bag_cart .bagcart {
     color: white;
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: 0px; }
+  .bag_cart .dropdown {
+    position: relative;
+    display: inline-block; }
+  .bag_cart .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1; }
+  .bag_cart .dropdown:hover .dropdown-content {
+    display: block; }
+  .bag_cart .dropBtn {
+    height: 45px;
+    width: 45px;
+    margin: 4px 15px !important; }
 
 /*#endregion bagcart*/
 .banner_top {

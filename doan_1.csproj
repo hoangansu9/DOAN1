@@ -200,6 +200,18 @@
     <Compile Include="Migrations\202007051204350__add_new_mapped.Designer.cs">
       <DependentUpon>202007051204350__add_new_mapped.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007060749295_add_vitual.cs" />
+    <Compile Include="Migrations\202007060749295_add_vitual.Designer.cs">
+      <DependentUpon>202007060749295_add_vitual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007060829075_add_sale.cs" />
+    <Compile Include="Migrations\202007060829075_add_sale.Designer.cs">
+      <DependentUpon>202007060829075_add_sale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007060835341_add_sale32.cs" />
+    <Compile Include="Migrations\202007060835341_add_sale32.Designer.cs">
+      <DependentUpon>202007060835341_add_sale32.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Author.cs" />
@@ -319,6 +331,8 @@
     <Content Include="Views\Publisher\Index.cshtml" />
     <Content Include="Views\ShoppingCart\ShowToCart.cshtml" />
     <Content Include="Views\ShoppingCart\BagCart.cshtml" />
+    <Content Include="Views\ShoppingCart\BagCartItem.cshtml" />
+    <Content Include="Views\ShoppingCart\Shopping_Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -351,6 +365,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007051204350__add_new_mapped.resx">
       <DependentUpon>202007051204350__add_new_mapped.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007060749295_add_vitual.resx">
+      <DependentUpon>202007060749295_add_vitual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007060829075_add_sale.resx">
+      <DependentUpon>202007060829075_add_sale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007060835341_add_sale32.resx">
+      <DependentUpon>202007060835341_add_sale32.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

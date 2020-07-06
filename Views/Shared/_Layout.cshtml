@@ -24,30 +24,35 @@
                 </div>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">                             
+                <ul class="nav navbar-nav">
                     <li>
                         <form class="search_bar ">
                             <input type="text" placeholder="Tìm kiếm sách..." name="search">
                             <button type="submit">Tìm</button>
                         </form>
-                    </li>
-                    <li class="bag_cart">
-                        <a class="glyphicon glyphicon-shopping-cart" href="/ShoppingCart/ShowToCart"></a>
-                        @Html.Action("BagCart", "ShoppingCart")
+                    </li>                   
+                    <li class="bag_cart ">                     
+                        <div class="dropdown">
+                            <a class="glyphicon glyphicon-shopping-cart dropBtn" href="/ShoppingCart/ShowToCart">
+                                @Html.Action("BagCart", "ShoppingCart")
+                            </a>
+                            <div class="dropdown-content">
+                                <div>
+                                    @Html.Action("BagCartItem", "ShoppingCart")
+                                </div>                               
+                            </div>
+                        </div>
                     </li>
                     <li>@Html.Partial("_LoginPartial")</li>
-                </ul>
-              
-               
-                
-            
-            </div>
+
+                </ul>                                                  
+           </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-
+       
     </div>
     <footer class="footer-distributed footer_wrapper ">
         <div class="footer-left">

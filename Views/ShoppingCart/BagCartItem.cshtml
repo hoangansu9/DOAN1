@@ -1,0 +1,51 @@
+﻿@model doan_1.Models.Cart
+@if (Model != null)
+{
+    <table class="table">
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                double total = Convert.ToDouble(item._shopping_product.BookPrice * item._shopping_quantity);
+                <tr>
+
+                    <td>Hình</td>
+                    <td>Đơn giá</td>
+                    <td>Số lượng</td>
+                    <td>Tổng</td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <img src="@Url.Content(item._shopping_product.Image)" style="width:40px; height:40px;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item._shopping_product.BookPrice)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Update_Quantity_Cart", "ShoppingCart"))
+                         {
+                            <input type="hidden" value="@item._shopping_product.BookID" name="ID_Product" />
+                            <input type="text" disabled value="@item._shopping_quantity" name="Quantity" />
+
+                         }
+
+                    </td>
+                    <td>
+                        @total
+                    </td>
+                    <td>
+                        <a class="glyphicon glyphicon-remove-sign" href="/ShoppingCart/RemoveCart/@item._shopping_product.BookID"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        Sum Total: @Model.Total_Money()
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <a href="/ShoppingCart/ShowToCart">Tới giỏ hàng...</a>
+}
+

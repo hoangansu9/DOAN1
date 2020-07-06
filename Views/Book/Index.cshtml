@@ -123,7 +123,9 @@ else
 
                             <div class="name_book">@Html.DisplayFor(modelItem => item.BookName)</div>
                             <div class="price_book">
-                                <a href="/ShoppingCart/AddToCart/@item.BookID" class="glyphicon glyphicon-shopping-cart"></a>@Html.DisplayFor(modelItem => item.BookPrice)&dstrok;
+                                <a href="/ShoppingCart/AddToCart/@item.BookID" class="glyphicon glyphicon-shopping-cart">
+                                    </a>
+                                @Html.DisplayFor(modelItem => item.BookPrice)&dstrok;
                             </div>
                         </div>
                     </div>
