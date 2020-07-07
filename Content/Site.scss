@@ -7,6 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+  
 }
 /*#region header_navbar*/
 .header_top {
@@ -294,17 +295,19 @@ form.search_bar::after {
 .bag_cart {
     margin: 0 30px;
 
-    & > a {
-        font-size: 20px;
+    & > .dropdown > a {
+        font-size: 30px !important ;
+        color: white;
+        top: 10px;
     }
 
     .bagcart {
         color: white;
         position: absolute;
-        top: 5px;
-        right: 0px;
-
+        right: 5px;
+        top: -15px;
         .num_bag {
+            opacity:0.8;
         }
     }
 

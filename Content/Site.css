@@ -245,13 +245,17 @@ form.search_bar::after {
 /*#region bagcart*/
 .bag_cart {
   margin: 0 30px; }
-  .bag_cart > a {
-    font-size: 20px; }
+  .bag_cart > .dropdown > a {
+    font-size: 30px !important;
+    color: white;
+    top: 10px; }
   .bag_cart .bagcart {
     color: white;
     position: absolute;
-    top: 5px;
-    right: 0px; }
+    right: 5px;
+    top: -15px; }
+    .bag_cart .bagcart .num_bag {
+      opacity: 0.8; }
   .bag_cart .dropdown {
     position: relative;
     display: inline-block; }
