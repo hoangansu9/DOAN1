@@ -34,15 +34,31 @@ namespace doan_1.Controllers
             return Redirect(Request.UrlReferrer.ToString());
 
         }
+        public ActionResult AddtoCart_Detail(int id)
+        {
+            var pro = _db.Book.SingleOrDefault(s => s.BookID == id);
+            if (pro != null)
+            {
+                GetCart().Add(pro);
+            }
+              return RedirectToAction("ShowToCart", "ShoppingCart");
+
+        }
+
+
         public ActionResult ShowToCart()
         {
             if (Session["Cart"] == null)
             {
-               
-                return  JavaScript("<script language='javascript' type='text/javascript'>alert('Giỏ hàng trống...!');</script>");
-
+                ViewBag.nullCart = "Giỏ hàng trống...!";
+                return View();
             }
             Cart cart = Session["Cart"] as Cart;
+            if (cart.Items.Count() == 0)
+            {
+                ViewBag.nullCart = "Giỏ hàng trống...!";
+                return View();
+            }
             return View(cart);
         }
         public ActionResult Update_Quantity_Cart(FormCollection form)
@@ -74,9 +90,15 @@ namespace doan_1.Controllers
         {
             if (Session["Cart"] == null)
             {
-                return null;
+                ViewBag.nullCart = "Giỏ hàng trống...!";
+                return PartialView();
             }
             Cart cart = Session["Cart"] as Cart;
+            if (cart.Items.Count() == 0)
+            {
+                ViewBag.nullCart = "Giỏ hàng trống...!";
+                return PartialView();
+            }
             return PartialView(cart);
 
         }

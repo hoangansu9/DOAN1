@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<doan_1.Models.Book>
-
+@using doan_1.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    
 }
 
 
@@ -89,88 +89,91 @@ else
 {
     <div>
         <div class="container view_book_wrapper">
-            <div class="banner_top">
-                <div class="slideshow-container">
-                    <div class="mySlides fade">
-                        <div class="numbertext">1 / 3</div>
-                        <img src="~/Content/Images/book_banner1.jpg" style="width:100%">
-                    </div>
-                    <div class="mySlides fade">
-                        <div class="numbertext">2 / 3</div>
-                        <img src="~/Content/Images/book_banner2.jpg" style="width:100%">
-                    </div>
-                    <div class="mySlides fade">
-                        <div class="numbertext">3 / 3</div>
-                        <img src="~/Content/Images/book_banner3.jpg" style="width:100%">
-                    </div>
-                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                </div>
-                <br>
-                <div style="text-align:center">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
-                </div>
-            </div>
-
-            <div class="row">
-                @foreach (var item in Model)
-                {
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card item_book">
-                            <a href="@Url.Action("Details", "Book", new { id = item.BookID })">
-                                <img class="img_book" src="@Url.Content(item.Image)" />
-                            </a>
-
-                            <div class="name_book">@Html.DisplayFor(modelItem => item.BookName)</div>
-                            <div class="price_book">
-                                <a href="/ShoppingCart/AddToCart/@item.BookID" class="glyphicon glyphicon-shopping-cart">
-                                </a>
-                                @Html.DisplayFor(modelItem => item.BookPrice, ".ToString(N0)")&dstrok;
+            <div class="banner_top ">
+                <div class="slideshow-container row" style="margin-left:0px !important">
+                    <div class="nav_wrapper col-sm-2 col-md-4 col-lg-4">
+                        <p class="sp_list">Danh mục sản phẩm</p>
+                        <a href="#news">FOREIGN BOOKS</a>
+                        <a href="#news">VPP - Dụng cụ học sinh</a>
+                        <a href="#news">Sản phẩm</a>
+                        <a href="#news">Đồ chơi</a>
+                        <a href="#news">Sách theoo nhà cung cấp</a>
+                        <a href="#news">VPP - DCHS Theo Thương Hiệu</a>
+                        <a href="#news">Sản phẩm</a>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                Bách Hoá OnLine - Lưu niệm
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="#">Ví túi</a>
+                                <a href="#">Đồng hồ</a>
+                                <a href="#">Móc khoá</a>
+                                <a href="#">Khung hình</a>
                             </div>
                         </div>
                     </div>
-                }
-            </div>
-        </div>
-    </div>
-    <script>
-        window.onscroll = function () {
-            myFunction();
-        };
-        var navbar = document.getElementById('search');
-        var sticky = navbar.offsetTop;
+                    <div class="col-sm-8 col-md-8 col-lg-8" style="padding:0px;">
+                        <ul class="container" style="padding:0px;margin:0">
+                            <li><img src="~/Content/Images/book_banner1.jpg"></li>
+                            <li><img src="~/Content/Images/book_banner3.jpg"></li>
+                            <li><img src="~/Content/Images/book_banner1.jpg"></li>
+                            <li><img src="~/Content/Images/book_banner2.jpg"></li>
+                            <li><img src="~/Content/Images/book_banner3.jpg"></li>
+                        </ul>
+                    </div>
+                </div>
 
-        function myFunction() {
-            if (window.pageYOffset >= sticky) {
-                navbar.classList.add('sticky');
-            } else {
-                navbar.classList.remove('sticky');
-            }
-        }
-        var slideIndex = 1;
-        showSlides(slideIndex);
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("dot");
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-        }
-    </script>
+                    <div class="row row_book">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-sm-6 col-md-4 col-lg-3" >
+                                @*<div class="card item_book">
+                        <a href="@Url.Action("Details", "Book", new { id = item.BookID })">
+                            <img class="img_book" src="@Url.Content(item.Image)" />
+                        </a>
+
+                        <div class="name_book">@Html.DisplayFor(modelItem => item.BookName)</div>
+                        <div class="price_book">
+                            <a href="/ShoppingCart/AddToCart/@item.BookID" class="glyphicon glyphicon-shopping-cart">
+                            </a>
+                            @Html.DisplayFor(modelItem => item.BookPrice, ".ToString(N0)")&dstrok;
+                        </div>
+                    </div>*@
+                                <div class="book-item">
+                                    <div class="product-block">
+                                        <div class="left-block">
+                                            <a class="product_img_link" target="_blank" href="@Url.Action("Details", "Book", new { id = item.BookID })" title="Book">
+                                                <img class="img-responsive" src="@Url.Content(item.Image)" border="0" alt="banner" style="height:250px;width:auto" />
+                                            </a>
+                                            <a target="_blank" href="@Url.Action("Details", "Book", new { id = item.BookID })" class="quick-view btn-tooltip">
+                                                <i class="glyphicon glyphicon-eye-open"></i>
+                                            </a>
+                                            @*<span class="label-new label">New</span>*@
+                                        </div>
+                                        <div class="right-block">
+                                            <div class="product-meta">
+                                                <h5 class="name">
+                                                    <a target="_blank" href="@Url.Action("Details", "Book", new { id = item.BookID })" class="product-name">@Html.DisplayFor(modelItem => item.BookName)</a>
+                                                </h5>
+                                                <div class="content_price">
+                                                    <span class="price product-price">
+                                                         @Html.DisplayFor(modelItem => item.BookPrice)&dstrok;
+                                                    </span>
+                                                    <span class="old-price product-price">999,999&dstrok;</span>
+                                                    <span class="price-percent-reduction">50%</span>
+                                                </div>
+                                                <div class="functional-buttons clearfix">
+                                                    <a target="_parent" href="/ShoppingCart/AddToCart/@item.BookID" class="button ajax_add_to_cart_button"><span>Add to cart</span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+    </div>
+  </div>
 }

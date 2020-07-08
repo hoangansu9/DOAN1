@@ -68,14 +68,14 @@
                     @using (Html.BeginForm("CheckOut", "ShoppingCart"))
                     {
                         <table style="border-collapse:separate; border-spacing:5px">
-                            
-                               <tr> 
+
+                            <tr>
                                 <td>
                                     <input type="submit" value="CheckOut" class="btn btn-success" />
 
                                 </td>
 
-                                
+
                             </tr>
                         </table>
                     }
@@ -89,4 +89,8 @@
         </tfoot>
     </table>
     <a href="/">Back to Home</a>
+}
+else
+{
+    <div>@ViewBag.nullCart</div>
 }
