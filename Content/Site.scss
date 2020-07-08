@@ -3,240 +3,242 @@
     background-color:aliceblue;
     
 }
-
-
 /* Set padding to keep content from hitting the edges */
+/*#region body-conent*/
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    min-height: 600px;
-
-    @mixin setScrolltopColors($bgColor: #333, $arrowColor: white, $bgColorHover: $bgColor, $arrowColorHover: $arrowColor) {
-        #scrolltop-bg {
-            fill: $bgColor;
-        }
-
-        #scrolltop-arrow {
-            fill: $arrowColor;
-        }
-
-        a:hover {
+    min-height: 800px;
+ 
+    .div_sroll_wrapper {
+        @mixin setScrolltopColors($bgColor: #333, $arrowColor: white, $bgColorHover: $bgColor, $arrowColorHover: $arrowColor) {
             #scrolltop-bg {
-                fill: $bgColorHover;
+                fill: $bgColor;
             }
 
             #scrolltop-arrow {
-                fill: $arrowColorHover;
+                fill: $arrowColor;
+            }
+
+            a:hover {
+                #scrolltop-bg {
+                    fill: $bgColorHover;
+                }
+
+                #scrolltop-arrow {
+                    fill: $arrowColorHover;
+                }
             }
         }
-    }
 
-    .scrolltop-wrap {
-        $size: 3rem;
-        $offsetBottom: 2rem;
-        $offsetHorizontal: 2rem;
-        $scrollToRevealDistance: 12rem; // scroll offset to reveal scroll-to-top link
-        $color: #007bff;
-        box-sizing: border-box;
-        position: absolute;
-        top: $scrollToRevealDistance;
-        right: $offsetHorizontal;
-        bottom: 0;
-        pointer-events: none;
-        backface-visibility: hidden;
-        z-index: 1;
-        @include setScrolltopColors($color, white, lighten($color, 8%));
-        // prevent extra page height if content is smaller than viewport
-        // Firefox only
-        @supports (-moz-appearance: meterbar) {
-            clip: rect(0, $size, auto, 0);
-        }
-
-        a {
-            $offset: - ($size + $offsetBottom); // pull up + add a small bottom space
-            position: fixed; // fallback
-            position: sticky;
-            top: $offset;
-            width: $size;
-            height: $size;
-            margin-bottom: $offset;
-            transform: translateY(100vh); // push to bottom from top (when stuck)
+        .scrolltop-wrap {
+            $size: 3rem;
+            $offsetBottom: 2rem;
+            $offsetHorizontal: 2rem;
+            $scrollToRevealDistance: 12rem; // scroll offset to reveal scroll-to-top link
+            $color: #007bff;
+            box-sizing: border-box;
+            position: absolute;
+            top: $scrollToRevealDistance;
+            right: $offsetHorizontal;
+            bottom: 0;
+            pointer-events: none;
             backface-visibility: hidden;
-            display: inline-block;
-            text-decoration: none;
-            user-select: none;
-            pointer-events: all;
-            outline: none;
-            overflow: hidden;
+            z-index: 1;
+            @include setScrolltopColors($color, white, lighten($color, 8%));
+            // prevent extra page height if content is smaller than viewport
+            // Firefox only
+            @supports (-moz-appearance: meterbar) {
+                clip: rect(0, $size, auto, 0);
+            }
 
-            svg {
-                display: block;
-                border-radius: 50%;
-                width: 100%;
-                height: 100%;
+            a {
+                $offset: - ($size + $offsetBottom); // pull up + add a small bottom space
+                position: fixed; // fallback
+                position: sticky;
+                top: $offset;
+                width: $size;
+                height: $size;
+                margin-bottom: $offset;
+                transform: translateY(100vh); // push to bottom from top (when stuck)
+                backface-visibility: hidden;
+                display: inline-block;
+                text-decoration: none;
+                user-select: none;
+                pointer-events: all;
+                outline: none;
+                overflow: hidden;
 
-                path {
-                    transition: all 0.1s;
+                svg {
+                    display: block;
+                    border-radius: 50%;
+                    width: 100%;
+                    height: 100%;
+
+                    path {
+                        transition: all 0.1s;
+                    }
+                }
+
+                #scrolltop-arrow {
+                    transform: scale(0.66);
+                    transform-origin: center;
                 }
             }
 
-            #scrolltop-arrow {
-                transform: scale(0.66);
-                transform-origin: center;
+            @media print {
+                display: none !important;
             }
         }
-
-        @media print {
-            display: none !important;
-        }
-    }
-    // presentation styles
-    .container {
-        position: relative;
-        padding: 2rem 2rem 6rem;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .intro {
-        font-size: 1.16rem;
-    }
-
-    .intro a:hover {
-        text-decoration: underline;
-    }
-
-    #dummy-content p {
-        display: inline;
-        background: rgba(black, 0.12);
-        color: transparent;
-        user-select: none;
-        border-radius: 2px;
-        box-decoration-break: clone;
-
-        + p {
-            &:before {
-                visibility: hidden;
-                content: ".";
-                display: block;
-            }
-        }
-    }
-
-    label {
-        display: inline-block;
-        float: left;
-        margin-right: -1px;
-        padding: 0.4rem 0.9rem 0.6rem;
-        border: 1px solid rgba(#b2b7bb, 0.99);
-        border-radius: 3px;
-        cursor: pointer;
-        user-select: none;
-        transition: all 0.1s;
-        font-size: 96%;
-        font-weight: 600;
-        width: 50%;
-
-        span {
-            font-size: 0.86rem;
-            line-height: 1.33rem;
-            display: block;
-            font-weight: 400;
-        }
-
-        &[for="dummy-content-toggle"] {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        &[for="fallback-toggle"] {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
-        &:hover {
-            color: #1e8aff;
-            border-color: darken(#b2b7bb, 6%);
-        }
-    }
-
-    input[type="checkbox"] {
-        display: none;
-    }
-
-    input#dummy-content-toggle {
-        &:checked {
-            ~ #dummy-content {
-                display: none;
-            }
-
-            ~ div label[for="dummy-content-toggle"] {
-                background: #1e8aff;
-                border-color: #1e8aff;
-                color: white;
-            }
-        }
-    }
-
-    input#fallback-toggle {
-        &:checked {
-            ~ .scrolltop-wrap a {
-                position: fixed;
-            }
-
-            ~ div label[for="fallback-toggle"] {
-                background: #1e8aff;
-                border-color: #1e8aff;
-                border-left-color: #ddd;
-                color: white;
-            }
-        }
-    }
-
-    a {
-        color: #1e8aff;
-    }
-
-    ul {
-        margin-top: -1rem;
-    }
-
-    @media screen and (max-width: 721px) {
-        html {
-            font-size: 84%;
-
-            &::before {
-                background: #eff0f2;
-            }
-        }
-
+        // presentation styles
         .container {
-            padding: 1rem 1.5rem 2rem;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-        }
-
-        h3 {
-            font-size: 1.5rem;
+            position: relative;
+            padding: 2rem 2rem 6rem;
         }
 
         h1,
         h2,
         h3,
         p {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .intro {
+            font-size: 1.16rem;
+        }
+
+        .intro a:hover {
+            text-decoration: underline;
+        }
+
+        #dummy-content p {
+            display: inline;
+            background: rgba(black, 0.12);
+            color: transparent;
+            user-select: none;
+            border-radius: 2px;
+            box-decoration-break: clone;
+
+            + p {
+                &:before {
+                    visibility: hidden;
+                    content: ".";
+                    display: block;
+                }
+            }
+        }
+
+        label {
+            display: inline-block;
+            float: left;
+            margin-right: -1px;
+            padding: 0.4rem 0.9rem 0.6rem;
+            border: 1px solid rgba(#b2b7bb, 0.99);
+            border-radius: 3px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.1s;
+            font-size: 96%;
+            font-weight: 600;
+            width: 50%;
+
+            span {
+                font-size: 0.86rem;
+                line-height: 1.33rem;
+                display: block;
+                font-weight: 400;
+            }
+
+            &[for="dummy-content-toggle"] {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            &[for="fallback-toggle"] {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            &:hover {
+                color: #1e8aff;
+                border-color: darken(#b2b7bb, 6%);
+            }
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        input#dummy-content-toggle {
+            &:checked {
+                ~ #dummy-content {
+                    display: none;
+                }
+
+                ~ div label[for="dummy-content-toggle"] {
+                    background: #1e8aff;
+                    border-color: #1e8aff;
+                    color: white;
+                }
+            }
+        }
+
+        input#fallback-toggle {
+            &:checked {
+                ~ .scrolltop-wrap a {
+                    position: fixed;
+                }
+
+                ~ div label[for="fallback-toggle"] {
+                    background: #1e8aff;
+                    border-color: #1e8aff;
+                    border-left-color: #ddd;
+                    color: white;
+                }
+            }
+        }
+
+        a {
+            color: #1e8aff;
+        }
+
+        ul {
+            margin-top: -1rem;
+        }
+
+        @media screen and (max-width: 721px) {
+            html {
+                font-size: 84%;
+
+                &::before {
+                    background: #eff0f2;
+                }
+            }
+
+            .container {
+                padding: 1rem 1.5rem 2rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            h1,
+            h2,
+            h3,
+            p {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
         }
     }
 }
+/*#endregion body-conent*/
 /*#region header_navbar*/
 .header_top {
     background-image: linear-gradient(90deg, #0971b7 30%, #3c3150) !important;
@@ -961,7 +963,8 @@ form.search_bar::after {
 /*#endregion block_book*/
 /*#region slideshow*/
 .slideshow-container {
-    margin-bottom:40px;
+    margin-bottom: 40px;
+
     .container {
         position: relative !important;
         list-style: none;
@@ -1025,7 +1028,7 @@ form.search_bar::after {
         width: 300px;
         position: relative;
         float: left;
-   
+        height: 460px;
         overflow-y: hidden;
         background-color: #1890ff;
     }
@@ -1133,3 +1136,74 @@ form.search_bar::after {
     }
 }
 /*#endregion details_Book*/
+/*#region login*/
+.login_user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15%;
+
+    .form_login {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 2px 3px #ddd;
+        padding: 40px;
+        width: 300px;
+        height: 270px;
+        background-color: white;
+
+
+        .input_login {
+            border-radius: 0;
+        }
+
+        .checkbox {
+            line-height: 12px;
+            padding-left: 20px;
+        }
+
+        .check_box {
+            border-radius: 0;
+            margin: 0;
+        }
+
+        .btn_login {
+            width: 100%
+        }
+
+        .new_acc {
+            margin: 0px 20px;
+        }
+    }
+}
+.form_register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15%;
+
+    .register_user {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 2px 3px #ddd;
+        padding: 40px;
+        width: 360px;
+        height: auto;
+        background-color: white;
+    }
+
+    .form-group {
+        padding: 0;
+    }
+
+    .register_user_btn{
+        margin-left:0 !important;
+       
+    }
+}
+/*#endregion login*/
+
