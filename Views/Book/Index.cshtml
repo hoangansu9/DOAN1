@@ -9,6 +9,20 @@
 
 @if (User.IsInRole("Admin") == true)
 {
+    <ul>
+        <li>
+            <a href="/Author/Index">Author</a>
+        </li>
+        <li>
+            <a href="/Provider/Index">Provider</a>
+        </li>
+        <li>
+            <a href="/Publisher/Index">Publisher</a>
+        </li>
+        <li>
+            <a href="/Category/Index">Category</a>
+        </li>
+    </ul>
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>

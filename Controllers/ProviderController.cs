@@ -10,6 +10,7 @@ using doan_1.Models;
 
 namespace doan_1.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProviderController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
