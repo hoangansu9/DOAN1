@@ -364,7 +364,7 @@
   width: auto; }
   @media screen and (min-width: 800px) {
     .search_div_bar {
-      width: 630px !important; } }
+      width: 540px !important; } }
 
 .search_bar {
   display: flex;
