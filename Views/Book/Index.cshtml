@@ -93,11 +93,31 @@ else
                 <div class="slideshow-container row" style="margin-left:0px !important">
                     <div class="nav_wrapper col-sm-2 col-md-4 col-lg-4">
                         <p class="sp_list">Danh mục sản phẩm</p>
-                        <a href="#news">FOREIGN BOOKS</a>
-                        <a href="#news">VPP - Dụng cụ học sinh</a>
-                        <a href="#news">Sản phẩm</a>
-                        <a href="#news">Đồ chơi</a>
-                        <a href="#news">Sách theoo nhà cung cấp</a>
+                        @using (Html.BeginForm("LoadSachTheoDanhMuc", "Book"))
+                        {
+                            <input hidden="hidden" type="text" name="name" value="Kỹ Năng sống" />
+                            <input class="input_cate" type="submit" value="Kỹ Năng sống"/>
+                        }
+                        @using (Html.BeginForm("LoadSachTheoDanhMuc", "Book"))
+                        {
+                            <input hidden="hidden" type="text" name="name" value="Kinh Tế" />
+                            <input class="input_cate" type="submit"  value="Kinh Tế"/>
+                        }
+                        @using (Html.BeginForm("LoadSachTheoDanhMuc", "Book"))
+                        {
+                            <input hidden="hidden" type="text" name="name" value="Tiểu Sử Hồi Ký" />
+                            <input class="input_cate" type="submit" value="Tiểu Sử Hồi Ký" />
+                        }
+                        @using (Html.BeginForm("LoadSachTheoDanhMuc", "Book"))
+                        {
+                            <input hidden="hidden" type="text" name="name" value="Ngôn Tình" />
+                            <input class="input_cate" type="submit" value="Ngôn Tình" />
+                        }
+                        @using (Html.BeginForm("LoadSachTheoDanhMuc", "Book"))
+                        {
+                            <input hidden="hidden" type="text" name="name" value="Tiểu Thuyết" />
+                            <input class="input_cate" type="submit" value="Tiểu Thuyết" />
+                        }
                         <a href="#news">VPP - DCHS Theo Thương Hiệu</a>
                         <a href="#news">Sản phẩm</a>
                         <div class="dropdown">
@@ -112,6 +132,7 @@ else
                                 <a href="#">Khung hình</a>
                             </div>
                         </div>
+
                     </div>
                     <div class="col-sm-8 col-md-8 col-lg-8" style="padding:0px;">
                         <ul class="container" style="padding:0px;margin:0">
@@ -124,55 +145,56 @@ else
                     </div>
                 </div>
 
-                    <div class="row row_book">
-                        @foreach (var item in Model)
-                        {
-                            <div class="col-sm-6 col-md-4 col-lg-3" >
-                                @*<div class="card item_book">
-                        <a href="@Url.Action("Details", "Book", new { id = item.BookID })">
-                            <img class="img_book" src="@Url.Content(item.Image)" />
-                        </a>
+                <div class="row row_book">
+                    @ViewBag.nullBook
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            @*<div class="card item_book">
+                    <a href="@Url.Action("Details", "Book", new { id = item.BookID })">
+                        <img class="img_book" src="@Url.Content(item.Image)" />
+                    </a>
 
-                        <div class="name_book">@Html.DisplayFor(modelItem => item.BookName)</div>
-                        <div class="price_book">
-                            <a href="/ShoppingCart/AddToCart/@item.BookID" class="glyphicon glyphicon-shopping-cart">
-                            </a>
-                            @Html.DisplayFor(modelItem => item.BookPrice, ".ToString(N0)")&dstrok;
-                        </div>
-                    </div>*@
-                                <div class="book-item">
-                                    <div class="product-block">
-                                        <div class="left-block">
-                                            <a class="product_img_link" target="_blank" href="@Url.Action("Details", "Book", new { id = item.BookID })" title="Book">
-                                                <img class="img-responsive" src="@Url.Content(item.Image)" border="0" alt="banner" style="height:250px;width:auto" />
-                                            </a>
-                                            <a target="_blank" href="@Url.Action("Details", "Book", new { id = item.BookID })" class="quick-view btn-tooltip">
-                                                <i class="glyphicon glyphicon-eye-open"></i>
-                                            </a>
-                                            @*<span class="label-new label">New</span>*@
-                                        </div>
-                                        <div class="right-block">
-                                            <div class="product-meta">
-                                                <h5 class="name">
-                                                    <a target="_blank" href="@Url.Action("Details", "Book", new { id = item.BookID })" class="product-name">@Html.DisplayFor(modelItem => item.BookName)</a>
-                                                </h5>
-                                                <div class="content_price">
-                                                    <span class="price product-price">
-                                                         @Html.DisplayFor(modelItem => item.BookPrice)&dstrok;
-                                                    </span>
-                                                    <span class="old-price product-price">999,999&dstrok;</span>
-                                                    <span class="price-percent-reduction">50%</span>
-                                                </div>
-                                                <div class="functional-buttons clearfix">
-                                                    <a target="_parent" href="/ShoppingCart/AddToCart/@item.BookID" class="button ajax_add_to_cart_button"><span>Add to cart</span></a>
-                                                </div>
+                    <div class="name_book">@Html.DisplayFor(modelItem => item.BookName)</div>
+                    <div class="price_book">
+                        <a href="/ShoppingCart/AddToCart/@item.BookID" class="glyphicon glyphicon-shopping-cart">
+                        </a>
+                        @Html.DisplayFor(modelItem => item.BookPrice, ".ToString(N0)")&dstrok;
+                    </div>
+                </div>*@
+                            <div class="book-item">
+                                <div class="product-block">
+                                    <div class="left-block">
+                                        <a class="product_img_link" target="_blank" href="@Url.Action("Details", "Book", new { id = item.BookID })" title="Book">
+                                            <img class="img-responsive" src="@Url.Content(item.Image)" border="0" alt="banner" style="height:250px;width:auto" />
+                                        </a>
+                                        <a target="_blank" href="@Url.Action("Details", "Book", new { id = item.BookID })" class="quick-view btn-tooltip">
+                                            <i class="glyphicon glyphicon-eye-open"></i>
+                                        </a>
+                                        @*<span class="label-new label">New</span>*@
+                                    </div>
+                                    <div class="right-block">
+                                        <div class="product-meta">
+                                            <h5 class="name">
+                                                <a target="_blank" href="@Url.Action("Details", "Book", new { id = item.BookID })" class="product-name">@Html.DisplayFor(modelItem => item.BookName)</a>
+                                            </h5>
+                                            <div class="content_price">
+                                                <span class="price product-price">
+                                                    @Html.DisplayFor(modelItem => item.BookPrice)&dstrok;
+                                                </span>
+                                                <span class="old-price product-price">999,999&dstrok;</span>
+                                                <span class="price-percent-reduction">50%</span>
+                                            </div>
+                                            <div class="functional-buttons clearfix">
+                                                <a target="_parent" href="/ShoppingCart/AddToCart/@item.BookID" class="button ajax_add_to_cart_button"><span>Add to cart</span></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
+                </div>
                 </div>
     </div>
   </div>

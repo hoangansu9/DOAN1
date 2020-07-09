@@ -26,11 +26,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <form class="search_bar ">
-                            <input type="text" placeholder="Tìm kiếm sách..." name="search">
-                            <button type="submit">Tìm</button>
-                        </form>
-                    </li>                   
+                        <div class="search_div_bar">
+                            @using (Html.BeginForm("SearchTenSach", "Book", new { @class = "search_bar" }))
+                            {
+                                <input class="input_text" type="text" placeholder="Tìm kiếm sách..." name="tenSach">
+                                <input class="input_btn" type="submit" value="Tìm" />
+                            }
+                        </div>
+                        </li>                   
                     <li class="bag_cart ">                     
                         <div class="dropdown">
                             <a class="glyphicon glyphicon-shopping-cart dropBtn" href="/ShoppingCart/ShowToCart">
@@ -44,7 +47,6 @@
                         </div>
                     </li>
                     <li>@Html.Partial("_LoginPartial")</li>
-
                 </ul>                                                  
            </div>
         </div>

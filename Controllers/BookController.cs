@@ -38,7 +38,7 @@ namespace doan_1.Controllers
             return View(book);
         }
 
-        [Authorize(Roles = "Admin")]
+     
         // GET: Book/Create
         public ActionResult Create()
         {
@@ -77,7 +77,7 @@ namespace doan_1.Controllers
             ViewBag.PublisherID = new SelectList(db.Publisher, "PublisherID", "PublisherName", book.PublisherID);
             return View(book);
         }
-        [Authorize(Roles = "Admin")]
+     
         // GET: Book/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -116,7 +116,7 @@ namespace doan_1.Controllers
             ViewBag.PublisherID = new SelectList(db.Publisher, "PublisherID", "PublisherName", book.PublisherID);
             return View(book);
         }
-        [Authorize(Roles = "Admin")]
+   
         // GET: Book/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -142,7 +142,29 @@ namespace doan_1.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult SearchTenSach(string tenSach)
+        {
+            var tenSachs = from m in db.Book select m;
 
+            if (!String.IsNullOrEmpty(tenSach))
+            {
+                tenSachs = tenSachs.Where(s => s.BookName.Contains(tenSach));               
+            }
+            else
+            {
+                return RedirectToAction("Index", "Book");
+            }
+
+            return View("Index", tenSachs);
+
+        }
+        public ActionResult LoadSachTheoDanhMuc(string name)
+        {
+            var ten_loai = name;
+            var tenDanhMuc = db.Book.Where(m => m.Category.CateName == ten_loai);
+            return View("Index",tenDanhMuc.ToList());
+           
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
