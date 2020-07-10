@@ -17,6 +17,8 @@
             </div>
             <div class="row">
                 <div><b>Tác giả:</b>  @Html.DisplayFor(model => model.Author.AuthorName)</div>
+                <div><b>Loại:</b>  @Html.DisplayFor(model => model.Category.CateName)</div>
+                <div><b>Ngày xuất bản:</b>  @Html.DisplayFor(model => model.PublisherDate)</div>
                 <br />
                 <div class="price_book">@Model.BookPrice.ToString("N0") &dstrok;</div>
 
